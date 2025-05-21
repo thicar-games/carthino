@@ -1,12 +1,4 @@
-import { Game, Types } from "phaser"
+import { Game } from "phaser";
+import config from "./config";
 
-const config: Types.Core.GameConfig = {
-type: Phaser .AUTO,
-width: 800,
-height: 450,
-parent: "game-container"
-}
-
-export default new Game(config)
-
-
+export default new Game(config);
