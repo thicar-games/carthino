@@ -10,7 +10,7 @@ export class Boot extends Scene {
   }
 
   create() {
-    this.add.image(400, 225, 'image');
+    this.add.image(400, 225, 'logo');
   }
 }
 
