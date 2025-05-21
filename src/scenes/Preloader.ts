@@ -1,8 +1,8 @@
 import { Scene } from 'phaser';
 
-export class Boot extends Scene {
+export class Preloader extends Scene {
   constructor() {
-    super({ key: 'Preolader' });
+    super({ key: 'Preloader' });
   }
 }
 
