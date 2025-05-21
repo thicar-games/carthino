@@ -10,7 +10,11 @@ export class Boot extends Scene {
   }
 
   create() {
-    this.add.image(400, 225, 'logo');
+    this.add.image(400, 225, 'logo').setInteractive();
+    this.input.on('pointerdown', () => {
+      this.scene.start('Preloader');
+    }
+    );
   }
 }
 
