@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/geojson": "^7946.0.16",
     "parcel": "^2.14.4",
     "parcel-reporter-clean-dist": "^1.0.4",
     "parcel-reporter-static-files-copy": "^1.5.3",
@@ -7,6 +8,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "leaflet": "^1.9.4",
     "phaser": "^3.88.2"
   },
   "scripts": {
@@ -14,4 +16,3 @@
     "build": "parcel build src/index.html --dist-dir dist --public-url ./"
   }
 }
-
