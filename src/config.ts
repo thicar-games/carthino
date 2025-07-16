@@ -1,8 +1,7 @@
 import { Types } from "phaser";
 import { Boot } from "./scenes/Boot";
 import { Preloader } from "./scenes/Preloader";
-import {Maps} from "./scenes/Maps";
-import {Phase0} from "./scenes/Phase0";
+import { Phase0 } from "./scenes/Phase0";
 
 const config: Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -10,6 +9,13 @@ const config: Types.Core.GameConfig = {
   height: 450,
   parent: "game-container",
   scene: [Boot, Preloader, Phase0],
+  physics: {
+    default: "arcade",
+    arcade: {
+      gravity: { x: 0, y: 0 },
+      debug: true,
+    },
+  },
 };
 
 export default config;
