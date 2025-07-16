@@ -1,8 +1,11 @@
-import { Scene } from 'phaser';
+import { Scene } from "phaser";
 
 export class Preloader extends Scene {
   constructor() {
-    super({ key: 'Preloader' });
+    super({ key: "Preloader" });
+  }
+
+  create() {
+    this.scene.start("Phase0");
   }
 }
-

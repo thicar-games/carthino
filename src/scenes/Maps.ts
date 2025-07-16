@@ -1,61 +1,59 @@
-import { Scene } from 'phaser';
-import L, { Map as LeafletMap, LatLngExpression } from 'leaflet';
+import { Scene } from "phaser";
+import Map, { LatLngExpression } from "leaflet";
 
 export class Maps extends Scene {
-  map: LeafletMap;
+  map: Map.Map = Map.map("game-container").setView([0, 0], 18);
 
   constructor() {
-    super({ key: 'Maps' });
-
-    this.map = L.map("game-container").setView([0, 0], 18);
+    super({ key: "Maps" });
   }
 
-  create(): void {  
-    L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  create() {
+    Map.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       {}
     ).addTo(this.map);
 
-    
-    const userMarker = L.circleMarker(
-      [0, 0], {
-        radius: 8,
-        fillColor: '#3388ff',
-        color: "#000",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8,
-      }
-    ).addTo(this.map);
+    const userMarker = Map.circleMarker([0, 0], {
+      radius: 8,
+      fillColor: "#3388ff",
+      color: "#000",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8,
+    }).addTo(this.map);
 
     const pathCoordinates: LatLngExpression[] = [];
 
-    L.polyline(pathCoordinates, {
+    const pathLine = Map.polyline(pathCoordinates, {
       color: "#ff0000",
       weight: 3,
-      opacity: 0.7
+      opacity: 0.7,
     }).addTo(this.map);
 
     const options = {
       enableHighAccuracy: true,
-      maximumage: 0,
+      maximumAge: 0,
       timeout: 5000,
     };
+
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
           userMarker.setLatLng([latitude, longitude]);
-          this.map.setView([latitude, longitude], 18);
-          pathCoordinates.push([latitude, longitude]);
+          pathCoords.push([latitude, longitude] as LatLngExpression);
+          pathLine.setLatLngs(pathCoords);
+          this.map.setView([latitude, longitude], 18, {
+            animate: true,
+            duration: 1,
+          });
         },
         (error) => {
-          console.error('Geolocation error:', error);
+          console.error("Geolocation error:", error);
         },
         options
       );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
     }
   }
 }
